@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>B3D — 150 × 150 mm Recessed Manhole / Inspection Cover</title>
+
+<style>
+  :root{
+    --bg:#14171a;
+    --panel:#1c2024;
+    --line:#2b3036;
+    --text:#edeff2;
+    --muted:#8a919c;
+    --accent:#e8a93b;
+    --accent-text:#14171a;
+    --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-sans);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    padding:28px 20px 60px;
+  }
+
+  /* LOGO */
+
+  .logo{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin-bottom:32px;
+  }
+
+  .logo-mark{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:2px;
+    color:var(--text);
+    border:2px solid var(--accent);
+    padding:4px 9px;
+  }
+
+  .logo-sub{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+
+  /* PRODUCT IMAGES */
+
+  .visual{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    margin-bottom:10px;
+  }
+
+  .visual img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+
+  .image-thumbs{
+    display:flex;
+    gap:8px;
+    margin-bottom:28px;
+  }
+
+  .thumb{
+    width:72px;
+    height:72px;
+    object-fit:cover;
+    border:2px solid var(--line);
+    border-radius:4px;
+    cursor:pointer;
+    opacity:.65;
+    transition:opacity .15s,border-color .15s;
+  }
+
+  .thumb:hover{
+    opacity:.9;
+  }
+
+  .thumb.active{
+    border-color:var(--accent);
+    opacity:1;
+  }
+
+  /* PRODUCT INFORMATION */
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:2px;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+
+  h1{
+    font-size:26px;
+    line-height:1.25;
+    margin:0 0 12px;
+    font-weight:700;
+  }
+
+  .specs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+  }
+
+  .spec{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:5px 9px;
+  }
+
+  .description{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+    margin-bottom:28px;
+  }
+
+  .description h2{
+    color:var(--text);
+    font-size:18px;
+    margin:28px 0 10px;
+  }
+
+  .description p{
+    margin:0 0 16px;
+  }
+
+  .description ul{
+    margin:0 0 18px;
+    padding-left:20px;
+  }
+
+  .description li{
+    margin-bottom:7px;
+  }
+
+  .important{
+    border-left:3px solid var(--accent);
+    padding:14px 16px;
+    background:var(--panel);
+    margin-top:24px;
+    font-size:14px;
+  }
+
+  /* BUY PANEL */
+
+  .buy-panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:20px;
+  }
+
+  .price-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:22px;
+  }
+
+  .price{
+    font-size:28px;
+    font-weight:700;
+  }
+
+  .price-unit{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /* COLOUR */
+
+  .colour-row{
+    margin-bottom:20px;
+  }
+
+  .colour-label{
+    font-size:13px;
+    color:var(--muted);
+    font-family:var(--font-mono);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+
+  .colour-options{
+    display:flex;
+    gap:10px;
+  }
+
+  .colour-btn{
+    flex:1;
+    min-height:46px;
+    padding:12px;
+    background:var(--bg);
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:4px;
+    font-size:14px;
+    cursor:pointer;
+    font-family:var(--font-sans);
+  }
+
+  .colour-btn:hover{
+    border-color:var(--muted);
+  }
+
+  .colour-btn.selected{
+    border-color:var(--accent);
+    background:var(--accent);
+    color:var(--accent-text);
+    font-weight:700;
+  }
+
+  /* QUANTITY */
+
+  .qty-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
+
+  .qty-label{
+    font-size:13px;
+    color:var(--muted);
+    font-family:var(--font-mono);
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+
+  .stepper{
+    display:flex;
+    align-items:center;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+
+  .stepper button{
+    width:42px;
+    height:42px;
+    background:var(--bg);
+    color:var(--text);
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+    font-family:var(--font-mono);
+  }
+
+  .stepper button:active{
+    background:var(--accent);
+    color:var(--accent-text);
+  }
+
+  .stepper input{
+    width:44px;
+    height:42px;
+    text-align:center;
+    background:var(--panel);
+    color:var(--text);
+    border:none;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:15px;
+    -moz-appearance:textfield;
+  }
+
+  .stepper input::-webkit-outer-spin-button,
+  .stepper input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+  }
+
+  /* TOTAL */
+
+  .total-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    margin-bottom:20px;
+  }
+
+  .total-label{
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  .total-value{
+    font-size:22px;
+    font-weight:700;
+  }
+
+  .delivery-note{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+
+  /* BUY BUTTON */
+
+  .buy-btn{
+    width:100%;
+    padding:16px;
+    background:var(--accent);
+    color:var(--accent-text);
+    border:none;
+    border-radius:4px;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:.5px;
+    cursor:pointer;
+    font-family:var(--font-sans);
+  }
+
+  .buy-btn:active{
+    opacity:.85;
+  }
+
+  footer{
+    text-align:center;
+    margin-top:32px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:1px;
+  }
+
+  @media (min-width:768px){
+
+    .wrap{
+      padding-top:56px;
+    }
+
+    h1{
+      font-size:30px;
+    }
+
+  }
+</style>
+</head>
+
+
+<body>
+
+<div class="wrap">
+
+  <!-- LOGO -->
+
+  <div class="logo">
+
+    <div class="logo-mark">
+      B3D
+    </div>
+
+    <div class="logo-sub">
+      Print Works
+    </div>
+
+  </div>
+
+
+  <!-- PRODUCT IMAGE -->
+
+  <div class="visual">
+
+    <img
+      id="mainImage"
+      src="IMG_1081.jpeg"
+      alt="B3D 150 × 150 mm recessed manhole inspection cover">
+
+  </div>
+
+
+  <!-- IMAGE THUMBNAILS -->
+
+  <div
+    class="image-thumbs"
+    id="imageThumbs">
+
+    <img
+      src="IMG_1081.jpeg"
+      alt="Grey product view 1"
+      class="thumb active"
+      onclick="changeImage(this)">
+
+    <img
+      src="IMG_1082.jpeg"
+      alt="Grey product view 2"
+      class="thumb"
+      onclick="changeImage(this)">
+
+    <img
+      src="IMG_1083.jpeg"
+      alt="Grey product view 3"
+      class="thumb"
+      onclick="changeImage(this)">
+
+  </div>
+
+
+  <!-- PRODUCT INFORMATION -->
+
+  <div class="eyebrow">
+    Recessed Inspection Cover
+  </div>
+
+
+  <h1>
+    150 × 150 mm Recessed Manhole / Inspection Cover
+  </h1>
+
+
+  <div class="specs">
+
+    <span class="spec">
+      150 × 150 mm
+    </span>
+
+    <span
+      class="spec"
+      id="materialSpec">
+      Grey PETG
+    </span>
+
+    <span class="spec">
+      3D Printed
+    </span>
+
+    <span class="spec">
+      Made to Order
+    </span>
+
+  </div>
+
+
+  <!-- DESCRIPTION -->
+
+  <div class="description">
+
+    <p>
+      A 150 × 150 mm recessed manhole/inspection cover,
+      designed for use with landscaping, garden paving
+      and similar applications.
+    </p>
+
+    <p>
+      3D printed using PETG, a durable material well suited
+      to general outdoor use.
+    </p>
+
+
+    <h2>
+      Product Features
+    </h2>
+
+    <ul>
+      <li>150 × 150 mm recessed design</li>
+      <li>3D printed from PETG</li>
+      <li>Suitable for landscaping and garden paving applications</li>
+      <li>Weather and moisture resistant material</li>
+      <li>Suitable for general outdoor applications</li>
+      <li>Lightweight and easy to handle</li>
+      <li>Supplied ready for installation</li>
+    </ul>
+
+
+    <h2>
+      PETG Material
+    </h2>
+
+    <p>
+      PETG is commonly used for outdoor applications because
+      it offers good resistance to moisture and weathering
+      compared with materials such as PLA. It also has good
+      temperature resistance for normal outdoor use.
+    </p>
+
+
+    <div class="important">
+
+      <strong>Please note:</strong>
+
+      This is a 3D-printed product and is intended for suitable
+      landscaping and pedestrian/garden applications.
+
+      It has not been load tested or certified for vehicle
+      traffic, structural applications or use in areas
+      requiring a specified load rating.
+
+    </div>
+
+
+    <p style="margin-top:18px;">
+      Please check the dimensions and suitability for your
+      intended application before purchasing.
+    </p>
+
+  </div>
+
+
+  <!-- PAYMENT / ORDER PANEL -->
+
+  <div class="buy-panel">
+
+
+    <!-- PRICE -->
+
+    <div class="price-row">
+
+      <div class="price">
+        £25.00
+      </div>
+
+      <div class="price-unit">
+        PER UNIT
+      </div>
+
+    </div>
+
+
+    <!-- COLOUR -->
+
+    <div class="colour-row">
+
+      <div class="colour-label">
+        Colour
+      </div>
+
+
+      <div class="colour-options">
+
+        <!-- GREY -->
+
+        <button
+          type="button"
+          class="colour-btn selected"
+          data-colour="Grey">
+
+          Grey
+
+        </button>
+
+
+        <!-- BLACK -->
+
+        <button
+          type="button"
+          class="colour-btn"
+          data-colour="Black">
+
+          Black
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- QUANTITY -->
+
+    <div class="qty-row">
+
+      <div class="qty-label">
+        Quantity
+      </div>
+
+
+      <div class="stepper">
+
+        <button
+          type="button"
+          id="qtyMinus"
+          aria-label="Decrease quantity">
+
+          −
+
+        </button>
+
+
+        <input
+          type="number"
+          id="qtyInput"
+          value="1"
+          min="1"
+          step="1"
+          inputmode="numeric"
+          aria-label="Quantity">
+
+
+        <button
+          type="button"
+          id="qtyPlus"
+          aria-label="Increase quantity">
+
+          +
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL -->
+
+    <div class="total-row">
+
+      <div>
+
+        <div class="total-label">
+          Total
+        </div>
+
+        <div class="delivery-note">
+          Delivery added at checkout
+        </div>
+
+      </div>
+
+
+      <div
+        class="total-value"
+        id="totalValue">
+
+        £25.00
+
+      </div>
+
+    </div>
+
+
+    <!-- BUY BUTTON -->
+
+    <button
+      class="buy-btn"
+      id="buyBtn">
+
+      Buy Now
+
+    </button>
+
+  </div>
+
+
+  <footer>
+    B3D — MADE TO ORDER, UK
+  </footer>
+
+</div>
+
+
+<script>
+
+  /* ==========================================
+     STRIPE PAYMENT LINK
+     ========================================== */
+
+  var STRIPE_PAYMENT_LINK =
+    "https://buy.stripe.com/REPLACE_WITH_YOUR_LINK";
+
+
+  /* PRICE */
+
+  var UNIT_PRICE = 25.00;
+
+
+  /* ELEMENTS */
+
+  var qtyInput =
+    document.getElementById('qtyInput');
+
+  var totalValue =
+    document.getElementById('totalValue');
+
+  var buyBtn =
+    document.getElementById('buyBtn');
+
+  var materialSpec =
+    document.getElementById('materialSpec');
+
+  var mainImage =
+    document.getElementById('mainImage');
+
+  var imageThumbs =
+    document.getElementById('imageThumbs');
+
+
+  /* GREY DEFAULT */
+
+  var selectedColour = 'Grey';
+
+
+  /* ==========================================
+     GREY IMAGES
+     ========================================== */
+
+  var greyImages = [
+    'IMG_1081.jpeg',
+    'IMG_1082.jpeg',
+    'IMG_1083.jpeg'
+  ];
+
+
+  /* ==========================================
+     BLACK IMAGES
+     ========================================== */
+
+  var blackImages = [
+    'IMG_1097.jpeg',
+    'IMG_1098.jpeg'
+  ];
+
+
+  /* ==========================================
+     CHANGE MAIN IMAGE
+     ========================================== */
+
+  function changeImage(thumb){
+
+    mainImage.src =
+      thumb.src;
+
+
+    document.querySelectorAll('.thumb').forEach(
+      function(img){
+
+        img.classList.remove('active');
+
+      }
+    );
+
+
+    thumb.classList.add('active');
+
+  }
+
+
+  /* ==========================================
+     UPDATE PRODUCT IMAGE SET
+     ========================================== */
+
+  function updateColourImages(colour){
+
+    var images =
+      colour === 'Black'
+        ? blackImages
+        : greyImages;
+
+
+    /* Clear thumbnails */
+
+    imageThumbs.innerHTML = '';
+
+
+    /* Create new thumbnails */
+
+    images.forEach(
+      function(image,index){
+
+        var img =
+          document.createElement('img');
+
+
+        img.src =
+          image;
+
+
+        img.alt =
+          colour + ' product view ' + (index + 1);
+
+
+        img.className =
+          'thumb' + (index === 0 ? ' active' : '');
+
+
+        img.onclick =
+          function(){
+
+            changeImage(img);
+
+          };
+
+
+        imageThumbs.appendChild(img);
+
+      }
+    );
+
+
+    /* Set first image */
+
+    mainImage.src =
+      images[0];
+
+  }
+
+
+  /* ==========================================
+     QUANTITY
+     ========================================== */
+
+  function getQty(){
+
+    var v =
+      parseInt(
+        qtyInput.value,
+        10
+      );
+
+
+    if(
+      isNaN(v) ||
+      v < 1
+    ){
+
+      v = 1;
+
+    }
+
+
+    return v;
+
+  }
+
+
+  function updateTotal(){
+
+    var qty =
+      getQty();
+
+
+    qtyInput.value =
+      qty;
+
+
+    var total =
+      (
+        UNIT_PRICE * qty
+      ).toFixed(2);
+
+
+    totalValue.textContent =
+      '£' + total;
+
+  }
+
+
+  /* MINUS */
+
+  document.getElementById('qtyMinus')
+    .addEventListener(
+      'click',
+      function(){
+
+        qtyInput.value =
+          Math.max(
+            1,
+            getQty() - 1
+          );
+
+
+        updateTotal();
+
+      }
+    );
+
+
+  /* PLUS */
+
+  document.getElementById('qtyPlus')
+    .addEventListener(
+      'click',
+      function(){
+
+        qtyInput.value =
+          getQty() + 1;
+
+
+        updateTotal();
+
+      }
+    );
+
+
+  /* MANUAL QUANTITY */
+
+  qtyInput.addEventListener(
+    'input',
+    updateTotal
+  );
+
+
+  qtyInput.addEventListener(
+    'blur',
+    updateTotal
+  );
+
+
+  /* ==========================================
+     COLOUR SELECTION
+     ========================================== */
+
+  var colourButtons =
+    document.querySelectorAll(
+      '.colour-btn'
+    );
+
+
+  colourButtons.forEach(
+    function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          /* Remove previous selection */
+
+          colourButtons.forEach(
+            function(btn){
+
+              btn.classList.remove(
+                'selected'
+              );
+
+            }
+          );
+
+
+          /* Select new colour */
+
+          button.classList.add(
+            'selected'
+          );
+
+
+          /* Save colour */
+
+          selectedColour =
+            button.getAttribute(
+              'data-colour'
+            );
+
+
+          /* Update material text */
+
+          materialSpec.textContent =
+            selectedColour +
+            ' PETG';
+
+
+          /* Change product photos */
+
+          updateColourImages(
+            selectedColour
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* ==========================================
+     BUY BUTTON
+     ========================================== */
+
+  buyBtn.addEventListener(
+    'click',
+    function(){
+
+      if(
+        STRIPE_PAYMENT_LINK.indexOf(
+          'REPLACE_WITH_YOUR_LINK'
+        ) !== -1
+      ){
+
+        alert(
+          'Stripe payment link not set up yet. Add your Stripe Payment Link to the code.'
+        );
+
+        return;
+
+      }
+
+
+      var qty =
+        getQty();
+
+
+      /* Store order information */
+
+      localStorage.setItem(
+        'b3d_colour',
+        selectedColour
+      );
+
+
+      localStorage.setItem(
+        'b3d_quantity',
+        qty
+      );
+
+
+      /* Open Stripe */
+
+      window.location.href =
+        STRIPE_PAYMENT_LINK;
+
+    }
+  );
+
+
+  /* ==========================================
+     INITIAL SETUP
+     ========================================== */
+
+  updateTotal();
+
+  updateColourImages('Grey');
+
+</script>
+
+</body>
+</html>
